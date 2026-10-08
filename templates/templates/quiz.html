@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تحدي {{ creator }}</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1b4b; color: white; display: flex; justify-content: center; padding: 20px; }
+    .card { background: rgba(255,255,255,0.08); padding: 30px; border-radius: 16px; width: 100%; max-width: 500px; }
+    .q-box { margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }
+    input[type="text"] { width: 90%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: none; }
+    button { background: #ec4899; color: white; border: none; padding: 12px 20px; border-radius: 8px; width: 100%; cursor: pointer; font-size: 16px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>اختبار مدى معرفتك بـ {{ creator }} 🧠</h1>
+    <form method="POST">
+      <label>اسمك يا بطل:</label><br>
+      <input type="text" name="friend_name" placeholder="أدخل اسمك..." required><br><br>
+
+      {% for q in questions %}
+        <div class="q-box">
+          <p><b>{{ q.question }}</b></p>
+          {% for opt in q.options %}
+            <label>
+              <input type="radio" name="q_{{ q.id }}" value="{{ loop.index0 }}" required>
+              {{ opt }}
+            </label><br>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <button type="submit">إرسال الإجابات ورؤية النتيجة 🏆</button>
+    </form>
+  </div>
+
+</body>
+</html>
